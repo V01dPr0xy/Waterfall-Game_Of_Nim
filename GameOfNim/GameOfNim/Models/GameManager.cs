@@ -18,6 +18,7 @@ namespace GameOfNim.Models
         /// </summary>
         void SetupGame()
         {
+
             throw new NotImplementedException();
         }
 
@@ -48,8 +49,10 @@ namespace GameOfNim.Models
         /// <returns></returns>
         bool CheckGameIsOver()
         {
-
-            throw new NotImplementedException();
+            foreach (Heap h in heaps.Values)
+                if (h.amount != 0)
+                    return false;
+            return false;
         }
     }
 }
