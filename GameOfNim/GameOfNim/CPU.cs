@@ -8,5 +8,9 @@ namespace GameOfNim.Models
 {
     class CPU : BasePlayer
     {
+        public override void TakeTurn(Dictionary<string, Heap> heaps)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
