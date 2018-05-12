@@ -22,7 +22,7 @@ namespace GameOfNim.Models
             //1) Choose pile
             //2) Quit
             Console.WriteLine(name + "'s Turn");
-            CIO.PromptForMenuSelection(new string[] { "Choose pile" }, true);
+            if(CIO.PromptForMenuSelection(new string[] { "Choose pile" }, true) == 0) Environment.Exit(0);
 
             //Choose a pile
             //1) Heap1
