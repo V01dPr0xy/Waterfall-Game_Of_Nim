@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameOfNim.Models
 {
-    class CPU
+    class CPU : BasePlayer
     {
     }
 }
