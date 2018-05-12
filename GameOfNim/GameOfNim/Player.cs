@@ -19,24 +19,47 @@ namespace GameOfNim.Models
         public override void TakeTurn(Dictionary<string, Heap> heaps)
         {
             //Playern's Turn
+            //| A - 3 | B - 3 |
             //1) Choose pile
             //2) Quit
             Console.WriteLine(name + "'s Turn");
+
+            Console.Write("| ");
+            foreach (Heap h in heaps.Values) Console.Write(h + " | ");
+            Console.WriteLine();
+
             if(CIO.PromptForMenuSelection(new string[] { "Choose pile" }, true) == 0) Environment.Exit(0);
 
             //Choose a pile
             //1) Heap1
             //2) Heap2
             //etc
-            Console.WriteLine("Choose a pile");
-            int heapIndex = CIO.PromptForMenuSelection(heaps.Keys, false);
+            int heapIndex;
+            Heap chosenHeap;
+            do
+            {
+                Console.WriteLine("Choose a pile");
+                heapIndex = CIO.PromptForMenuSelection(heaps.Keys, false);
+                chosenHeap = heaps.ElementAt(heapIndex - 1).Value;
 
-            Heap chosenHeap = heaps.ElementAt(heapIndex - 1).Value;
+                if (chosenHeap.IsEmpty) Console.WriteLine("That heap is empty");
+            } while (chosenHeap == null || chosenHeap.IsEmpty);
 
+            
+
+            int amountToTake = 0;
+            bool validAmount = true;
             //Pick amount to take form Heapn
-            int amountToTake = CIO.PromptForInt("Pick amount to take from " + chosenHeap.name, 0, chosenHeap.Amount);
+            do
+            {
+                amountToTake = CIO.PromptForInt("Pick amount to take from " + chosenHeap.name + " (Between 1 and " + chosenHeap.Amount + ")", Int32.MinValue, Int32.MaxValue);
 
-            chosenHeap.TakeAmount(amountToTake);
+                validAmount = chosenHeap.TakeAmount(amountToTake);
+                if(!validAmount)
+                {
+                    Console.WriteLine(amountToTake < 1 ? "That's too little" : "That's too much");
+                }
+            } while (!validAmount);
         }
     }
 }
