@@ -1,14 +1,17 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using GameOfNim.Models;
 
 namespace GameOfNimUnitTesting
 {
     [TestClass]
-    public class UnitTest1
+    class GameManagerTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void GameManagerGameIsOver_Test1()
         {
+            GameManager gameManager = new GameManager();
+            
         }
     }
 }
