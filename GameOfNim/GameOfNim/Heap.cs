@@ -8,10 +8,17 @@ namespace GameOfNim.Models
 {
     public class Heap
     {
+        
         public int Amount { get; private set; }
         public bool IsEmpty { get { return Amount == 0; } }
 
         public string name;
+
+        public Heap(string name, int amount)
+        {
+            this.name = name;
+            Amount = amount;
+        }
 
         /// <summary>
         /// Subtracts amountToTake from Amount unless it would make Amount negative or if amountToTake is zero
