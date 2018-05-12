@@ -18,20 +18,22 @@ namespace GameOfNim.Models
         /// </summary>
         void SetupGame()
         {
-            if (CIO.PromptForBool("1 Player or 2 Players?", "1 Player", "2 Players"))
+            if (!CIO.PromptForBool("Welcome to the Game of Nim!\n1 Player or 2 Players in this match?", "1 Player", "2 Players"))
                 Players = new BasePlayer[] { new Player(), new Player() };
             else
                 Players = new BasePlayer[] { new Player(), new CPU() };
 
             int index = 1;
-            foreach (Player p in Players)
+            foreach (Player p in Players.OfType<Player>())
             {
-                string input = CIO.PromptForInput("", true);
+                string input = CIO.PromptForInput("Please enter your name: ", true);
                 p.name = (input != string.Empty) ? input : "Player " + index;
+                if (input == string.Empty)
+                    Console.WriteLine("Name defaulted to 'Player " + index + "'");
                 index++;
             }
 
-            switch (CIO.PromptForMenuSelection(new string[] { "Easy - heaps with 3 and 3", "Medium - heaps with 2, 5, 7", "Hard = heaps of 2, 3, 8, 9" }, true))
+            switch (CIO.PromptForMenuSelection(new string[] { "Easy - heaps with 3 and 3", "Medium - heaps with 2, 5, 7", "Hard = heaps of 2, 3, 8, 9" }, false))
             {
                 case 1:
                     heaps = new Dictionary<string, Heap> { { "A", new Heap("A", 3) }, { "B", new Heap("B", 3) } };
@@ -43,6 +45,10 @@ namespace GameOfNim.Models
 
                 case 3:
                     heaps = new Dictionary<string, Heap> { { "A", new Heap("A", 2) }, { "B", new Heap("B", 3) }, { "C", new Heap("C", 8) }, { "D", new Heap("D", 9) } };
+                    break;
+
+                default:
+                    Environment.Exit(0);
                     break;
             }
         }
@@ -65,7 +71,10 @@ namespace GameOfNim.Models
             }
             if (EndGame(Players[turnNum % 2]))
                 RunGame();
-            else Environment.Exit(0);
+            else
+            {
+                Environment.Exit(0);
+            }
         }
 
         /// <summary>
