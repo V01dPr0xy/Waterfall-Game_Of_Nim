@@ -7,7 +7,7 @@ using CSC160_ConsoleMenu;
 
 namespace GameOfNim.Models
 {
-    class Player : BasePlayer
+    public class Player : BasePlayer
     {
         /// <summary>
         /// Prompts user to make decisions necessary for a turn in Nim

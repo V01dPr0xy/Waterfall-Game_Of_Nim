@@ -9,8 +9,8 @@ namespace GameOfNim.Models
 {
     public class GameManager
     {
-        BasePlayer[] Players;
-        Dictionary<string, Heap> heaps;
+        public BasePlayer[] Players;
+        public Dictionary<string, Heap> heaps;
 
         /// <summary>
         /// Prompts the player through the console to choose the how many players, 
@@ -27,7 +27,7 @@ namespace GameOfNim.Models
             foreach (Player p in Players.OfType<Player>())
             {
                 string input = CIO.PromptForInput("Please enter your name: ", true);
-                p.name = (input != string.Empty) ? input : "Player " + index;
+                p.name = (input != string.Empty) ? input : $"Player {index}";
                 if (input == string.Empty)
                     Console.WriteLine("Name defaulted to 'Player " + index + "'");
                 index++;
@@ -82,16 +82,16 @@ namespace GameOfNim.Models
         ///     game goes back to the beginning. If not, it exits
         /// </summary>
         /// <returns>Returns a bool that represents if the player wants to continue playing or not</returns>
-        bool EndGame(BasePlayer player)
+        public bool EndGame(BasePlayer player)
         {
-            return CIO.PromptForBool(player.name + " won! Do you wish to keep playing?", "Yes", "No");
+            return CIO.PromptForBool($"{player.name} won! Do you wish to keep playing?", "Yes", "No");
         }
 
         /// <summary>
         /// Returns true if every Heap in heaps is empty
         /// </summary>
         /// <returns>A bool representing the emptiness of all heaps</returns>
-        bool CheckGameIsOver()
+        public bool CheckGameIsOver()
         {
             foreach (Heap h in heaps.Values)
                 if (h.Amount != 0)

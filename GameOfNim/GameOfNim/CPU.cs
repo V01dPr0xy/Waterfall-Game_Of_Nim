@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameOfNim.Models
 {
-    class CPU : BasePlayer
+    public class CPU : BasePlayer
     {
         public override void TakeTurn(Dictionary<string, Heap> heaps)
         {

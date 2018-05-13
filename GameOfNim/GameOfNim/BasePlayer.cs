@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameOfNim.Models
 {
-    abstract class BasePlayer
+    public abstract class BasePlayer
     {
         public string name;
 
