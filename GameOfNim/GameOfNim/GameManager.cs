@@ -64,16 +64,18 @@ namespace GameOfNim.Models
             int turnNum = 0;
             while (isGameGoing)
             {
-                Players[turnNum % 2].TakeTurn(heaps);
-                if (CheckGameIsOver())
-                    isGameGoing = false;
+                Players[turnNum % 2].TakeTurn(heaps);  
                 turnNum++;
-            }
-            if (EndGame(Players[turnNum % 2]))
-                RunGame();
-            else
-            {
-                Environment.Exit(0);
+
+                if (CheckGameIsOver())
+                {
+                    if (EndGame(Players[turnNum % 2]))
+                    {
+                        Console.WriteLine("\n\n");
+                        SetupGame();
+                    }
+                    else { isGameGoing = false; }
+                }
             }
         }
 
