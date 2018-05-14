@@ -33,6 +33,8 @@ namespace GameOfNim.Models
                 index++;
             }
 
+            foreach (CPU c in Players.OfType<CPU>()) c.name = "CPU"; 
+
             switch (CIO.PromptForMenuSelection(new string[] { "Easy - heaps with 3 and 3", "Medium - heaps with 2, 5, 7", "Hard = heaps of 2, 3, 8, 9" }, false))
             {
                 case 1:
@@ -65,7 +67,6 @@ namespace GameOfNim.Models
             while (isGameGoing)
             {
                 Players[turnNum % 2].TakeTurn(heaps);
-                turnNum++;
 
                 if (CheckGameIsOver())
                 {
@@ -76,6 +77,8 @@ namespace GameOfNim.Models
                     }
                     else { isGameGoing = false; }
                 }
+
+                turnNum++;
             }
         }
 
