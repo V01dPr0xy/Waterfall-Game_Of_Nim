@@ -52,8 +52,12 @@ namespace GameOfNim.Models
                     }
                 }
                 chosenHeap = list[rand.Next(list.Count)];
-                amount = rand.Next(chosenHeap.Amount);
-              
+                
+                amount = rand.Next(chosenHeap.Amount + 1);
+                while(chosenHeap.Amount - amount == 1)
+                {
+                    amount = rand.Next(chosenHeap.Amount + 1);
+                }
             }
 
             chosenHeap.TakeAmount(amount);
