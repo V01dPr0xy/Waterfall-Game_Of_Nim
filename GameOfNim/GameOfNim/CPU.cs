@@ -37,7 +37,6 @@ namespace GameOfNim.Models
             if(chosenHeap != null && chosenHeap.Amount > 1 && zeroCount == heaps.Count - 1)
             {
                 amount = chosenHeap.Amount - 1;
-                chosenHeap.TakeAmount(amount);
             }
             else
             {
@@ -53,10 +52,10 @@ namespace GameOfNim.Models
                 }
                 chosenHeap = list[rand.Next(list.Count)];
                 
-                amount = rand.Next(chosenHeap.Amount + 1);
-                while(chosenHeap.Amount - amount == 1)
+                amount = rand.Next(chosenHeap.Amount) + 1;
+                while(chosenHeap.Amount - amount == 0 && chosenHeap.Amount != 1)
                 {
-                    amount = rand.Next(chosenHeap.Amount + 1);
+                    amount = rand.Next(chosenHeap.Amount) + 1;
                 }
             }
 

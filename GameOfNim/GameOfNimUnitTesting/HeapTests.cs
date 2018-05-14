@@ -83,5 +83,13 @@ namespace GameOfNimUnitTesting
             cpu.TakeTurn(heaps);
             Assert.IsTrue(heaps["A"].Amount != 5 || heaps["B"].Amount != 7);
         }
+        [TestMethod]
+        public void CPUTakesLosingTurn()
+        {
+            Dictionary<string, Heap> heaps = new Dictionary<string, Heap> { { "A", new Heap("A", 1) }, { "B", new Heap("B", 0) } };
+            CPU cpu = new CPU();
+            cpu.TakeTurn(heaps);
+            Assert.IsTrue(heaps["A"].Amount == 0);
+        }
     }
 }
