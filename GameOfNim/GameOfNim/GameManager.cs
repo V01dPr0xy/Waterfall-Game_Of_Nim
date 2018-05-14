@@ -64,7 +64,7 @@ namespace GameOfNim.Models
             int turnNum = 0;
             while (isGameGoing)
             {
-                Players[turnNum % 2].TakeTurn(heaps);  
+                Players[turnNum % 2].TakeTurn(heaps);
                 turnNum++;
 
                 if (CheckGameIsOver())
@@ -83,6 +83,7 @@ namespace GameOfNim.Models
         /// Prints which player won and asks the players if they would like to play again. If they answer yes, the 
         ///     game goes back to the beginning. If not, it exits
         /// </summary>
+        /// <param name="player">The player that is meant to be displayed as the winner</param>
         /// <returns>Returns a bool that represents if the player wants to continue playing or not</returns>
         public bool EndGame(BasePlayer player)
         {
