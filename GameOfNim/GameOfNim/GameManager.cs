@@ -33,7 +33,7 @@ namespace GameOfNim.Models
                 index++;
             }
 
-            foreach (CPU c in Players.OfType<CPU>()) c.name = "CPU"; 
+            foreach (CPU c in Players.OfType<CPU>()) c.name = "Computer"; 
 
             switch (CIO.PromptForMenuSelection(new string[] { "Easy - heaps with 3 and 3", "Medium - heaps with 2, 5, 7", "Hard = heaps of 2, 3, 8, 9" }, false))
             {
