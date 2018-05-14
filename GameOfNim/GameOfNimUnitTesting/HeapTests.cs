@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GameOfNim.Models;
+using System.Collections.Generic;
+
 
 namespace GameOfNimUnitTesting
 {
@@ -59,8 +61,27 @@ namespace GameOfNimUnitTesting
         public void HeapToString_Test()
         {
             Heap heap = new Heap("Heap", 1);
-
+            
             Assert.AreEqual("Heap : 1", heap.ToString());
+        }
+
+        [TestMethod]
+        public void CPUTakesWinningMove()
+        {
+            Dictionary<string, Heap> heaps = new Dictionary<string, Heap> { { "A", new Heap("A", 100) }, { "B", new Heap("B", 0) } };
+
+            CPU cpu = new CPU();
+            cpu.TakeTurn(heaps);
+            Assert.IsTrue(heaps["A"].Amount == 1);
+        }
+
+        [TestMethod]
+        public void CPUTakesValidTurn()
+        {
+            Dictionary<string, Heap> heaps = new Dictionary<string, Heap> { { "A", new Heap("A", 5) }, { "B", new Heap("B",7) } };
+            CPU cpu = new CPU();
+            cpu.TakeTurn(heaps);
+            Assert.IsTrue(heaps["A"].Amount != 5 || heaps["B"].Amount != 7);
         }
     }
 }

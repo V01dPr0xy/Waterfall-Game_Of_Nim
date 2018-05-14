@@ -49,7 +49,7 @@ namespace GameOfNim.Models
 
             int amountToTake = 0;
             bool validAmount = true;
-            //Pick amount to take form Heapn
+            //Pick amount to take from Heap
             do
             {
                 amountToTake = CIO.PromptForInt("Pick amount to take from " + chosenHeap.name + " (Between 1 and " + chosenHeap.Amount + ")", Int32.MinValue, Int32.MaxValue);
